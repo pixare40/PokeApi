@@ -25,7 +25,7 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
 
         protected async Task<string> TranslateAsync(string input)
         {
-            string sanitised = Regex.Replace(input, "[^0-9A-Za-z ,]", " ");
+            string sanitised = Regex.Replace(input, "[^0-9A-Za-z ,'.]", " ");
 
             string requestUrl = string.Format("{0}{1}{2}{3}", apiEndpoint, TranslationType, ".json?text=", Uri.EscapeDataString(sanitised));
 
@@ -36,7 +36,7 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
             }
             catch(Exception e)
             {
-                return input;
+                return sanitised;
             }
         }
     }

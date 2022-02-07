@@ -12,25 +12,19 @@ namespace PokeApi.PokemonManagement.Descriptions
 {
     public class DescriptionProviderFactory : IDescriptionProviderFactory
     {
+        private readonly IDescriptionStrategy descriptionStrategy;
         private IDictionary<string, IDescriptionService> descriptors;
 
-        public DescriptionProviderFactory(IHttpClientProvider httpClientProvider, IOptions<PokemonApiConfigModel> pokemonApiConfig)
+        public DescriptionProviderFactory(IDescriptionStrategy descriptionStrategy)
         {
-            descriptors = new Dictionary<string, IDescriptionService>();
-            descriptors.Add("YODA", new YodaTranslator(httpClientProvider, pokemonApiConfig));
-            descriptors.Add("SHAKESPEAR", new ShakespearTranslator(httpClientProvider, pokemonApiConfig));
+            this.descriptionStrategy = descriptionStrategy;
+            descriptors = descriptionStrategy.InitialiseDescriptorMap();
         }
 
         public IDescriptionService GetDescriptor(Pokemon pokemon)
         {
-            if(pokemon.Habitat?.Name.ToLowerInvariant() == "cave" || pokemon.IsLegendary)
-            {
-                return descriptors["YODA"];
-            }
-            else
-            {
-                return descriptors["SHAKESPEAR"];
-            }
+            string key = descriptionStrategy.GetDescriptorKey(pokemon);
+            return descriptors[key];
         }
     }
 }

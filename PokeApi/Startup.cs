@@ -34,6 +34,7 @@ namespace PokeApi
             services.AddSingleton<IHttpClientProvider, HttpClientProvider>();
             services.AddSingleton<YodaTranslator>();
             services.AddSingleton<ShakespearTranslator>();
+            services.AddSingleton<IDescriptionStrategy, DefaultDescriptionStrategy>();
             services.AddSingleton<IDescriptionProviderFactory, DescriptionProviderFactory>();
             services.Configure<PokemonApiConfigModel>(Configuration
                 .GetSection(PokemonApiConfigModel.PokemonApiConfig));
