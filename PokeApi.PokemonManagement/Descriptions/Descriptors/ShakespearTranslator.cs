@@ -16,7 +16,7 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
         {
         }
 
-        protected override string TranslationType => "shakespear";
+        protected override string TranslationType => "shakespeare";
 
         public async Task<DescriptionModel> GetDescriptionAsync(Pokemon pokemon, bool translated = false)
         {

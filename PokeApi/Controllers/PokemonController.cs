@@ -41,16 +41,9 @@ namespace PokeApi.Controllers
 
             try
             {
-                Pokemon pokemon = await pokemonService.GetPokemonAsync(name);
-                IDescriptionService descService = descriptionProviderFactory.GetDescriptor(pokemon);
+                PokemonResponseModel model = await GetPokemonResponseModel(name, name, false);
 
-                DescriptionModel descModel = await descService.GetDescriptionAsync(pokemon);
-
-                PokemonResponseModel responseModel = GetResponseModel(pokemon, descModel);
-
-                TryCacheResponseModel(name, descModel, responseModel);
-
-                return Ok(responseModel);
+                return Ok(model);
             }
             catch (Exception e)
             {
@@ -62,6 +55,7 @@ namespace PokeApi.Controllers
         public async Task<ActionResult<Pokemon>> GetTranslatedAsync(string name)
         {
             string cacheKey = string.Format("{0}{1}", name, "translated");
+
             if (memoryCache.TryGetValue(cacheKey, out PokemonResponseModel pokemonResponse))
             {
                 return Ok(pokemonResponse);
@@ -69,14 +63,7 @@ namespace PokeApi.Controllers
 
             try
             {
-                Pokemon pokemon = await pokemonService.GetPokemonAsync(name);
-                IDescriptionService descService = descriptionProviderFactory.GetDescriptor(pokemon);
-
-                DescriptionModel descModel = await descService.GetDescriptionAsync(pokemon, true);
-
-                PokemonResponseModel responseModel = GetResponseModel(pokemon, descModel);
-
-                TryCacheResponseModel(cacheKey, descModel, responseModel);
+                PokemonResponseModel responseModel = await GetPokemonResponseModel(name, cacheKey, true);
 
                 return Ok(responseModel);
             }
@@ -84,6 +71,19 @@ namespace PokeApi.Controllers
             {
                 return Problem();
             }
+        }
+
+        private async Task<PokemonResponseModel> GetPokemonResponseModel(string name, string cacheKey, bool translate)
+        {
+            Pokemon pokemon = await pokemonService.GetPokemonAsync(name);
+            IDescriptionService descService = descriptionProviderFactory.GetDescriptor(pokemon);
+
+            DescriptionModel descModel = await descService.GetDescriptionAsync(pokemon, translate);
+
+            PokemonResponseModel responseModel = GetResponseModel(pokemon, descModel);
+
+            TryCacheResponseModel(cacheKey, descModel, responseModel);
+            return responseModel;
         }
 
         private void TryCacheResponseModel(string name, DescriptionModel descModel, PokemonResponseModel responseModel)
