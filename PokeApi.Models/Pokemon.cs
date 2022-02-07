@@ -23,7 +23,7 @@ namespace PokeApi.Models
         public object EvolvesFromSpecies { get; set; }
 
         [JsonPropertyName("flavor_text_entries")]
-        public object[] FlavorTextEntries { get; set; }
+        public FlavourTextEntry[] FlavorTextEntries { get; set; }
 
         [JsonPropertyName("form_descriptions")]
         public object[] FormDescriptions { get; set; }
@@ -41,7 +41,7 @@ namespace PokeApi.Models
         [JsonPropertyName("growth_rate")]
         public object GrowthRate { get; set; }
 
-        public object Habitat { get; set; }
+        public Habitat Habitat { get; set; }
 
         [JsonPropertyName("has_gender_differences")]
         public bool HasGenderDIfferences { get; set; }
@@ -75,5 +75,21 @@ namespace PokeApi.Models
         public object Shape { get; set; }
 
         public object[] Varieties { get; set; }
+    }
+
+    public class Habitat
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+    }
+
+    public class FlavourTextEntry
+    {
+        [JsonPropertyName("flavor_text")]
+        public string FlavourText { get; set; }
+
+        public object Language { get; set; }
+
+        public object Version { get; set; }
     }
 }

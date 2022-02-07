@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using PokeApi.Infrastructure;
 using PokeApi.Models;
 using PokeApi.Models.ConfigModels;
 using PokeApi.PokemonManagement;
@@ -9,19 +10,15 @@ using System.Threading.Tasks;
 
 namespace PokemonManagement
 {
-    public class PokemonService : IPokemonService, IDisposable
+    public class PokemonService : IPokemonService
     {
-        public readonly HttpClient client;
         public readonly string pokemonApi;
-        public PokemonService(IOptions<PokemonApiConfigModel> pokemonApiConfig)
-        {
-            client = new HttpClient();
-            pokemonApi = pokemonApiConfig.Value.Host;
-        }
+        private readonly IHttpClientProvider httpClient;
 
-        public void Dispose()
+        public PokemonService(IOptions<PokemonApiConfigModel> pokemonApiConfig, IHttpClientProvider httpClient)
         {
-            client.Dispose();
+            pokemonApi = pokemonApiConfig.Value.PokeApiEndpoint;
+            this.httpClient = httpClient;
         }
 
         public virtual async Task<Pokemon> GetPokemonAsync(string name)
@@ -31,29 +28,7 @@ namespace PokemonManagement
                 return null;
             }
 
-            return await GetHttpResponse(pokemonApi + name);
-        }
-
-        public virtual async Task<Pokemon> GetTranslatedPokemon(string name)
-        {
-            if (name == null)
-            {
-                return null;
-            }
-
-            return await GetHttpResponse(pokemonApi + "translated/" + name);
-        }
-
-        private async Task<Pokemon> GetHttpResponse(string url)
-        {
-            HttpResponseMessage response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-
-            var contentString = await response.Content.ReadAsStringAsync();
-
-            Pokemon result = JsonSerializer.Deserialize<Pokemon>(contentString,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return result;
+            return await httpClient.GetAsync<Pokemon>(string.Format("{0}{1}", pokemonApi, name));
         }
     }
 }

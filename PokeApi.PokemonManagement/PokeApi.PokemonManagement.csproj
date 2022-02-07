@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PokeApi.Infrastructure\PokeApi.Infrastructure.csproj" />
     <ProjectReference Include="..\PokeApi.Models\PokeApi.Models.csproj" />
   </ItemGroup>
 

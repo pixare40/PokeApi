@@ -6,8 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PokeApi.Infrastructure;
 using PokeApi.Models.ConfigModels;
 using PokeApi.PokemonManagement;
+using PokeApi.PokemonManagement.Descriptions;
+using PokeApi.PokemonManagement.Descriptions.Descriptors;
 using PokemonManagement;
 using System;
 using System.Collections.Generic;
@@ -28,6 +31,10 @@ namespace PokeApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpClientProvider, HttpClientProvider>();
+            services.AddSingleton<YodaTranslator>();
+            services.AddSingleton<ShakespearTranslator>();
+            services.AddSingleton<IDescriptionProviderFactory, DescriptionProviderFactory>();
             services.Configure<PokemonApiConfigModel>(Configuration
                 .GetSection(PokemonApiConfigModel.PokemonApiConfig));
             services.AddSingleton<IPokemonService, PokemonService>();
