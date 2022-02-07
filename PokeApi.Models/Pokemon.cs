@@ -1,39 +1,46 @@
-﻿namespace PokeApi.Models
+﻿using Newtonsoft.Json;
+
+namespace PokeApi.Models
 {
     public class Pokemon
     {
-        object[] Abilities { get; set; }
+        [JsonProperty("abilities")]
+        public object Abilities { get; set; }
 
-        object[] Forms { get; set; }
+        public object BaseExperience { get; set; }
 
-        object[] GameIndices { get; set; }
+        [JsonProperty("forms")]
+        public object Forms { get; set; }
 
-        double Height { get; set; }
+        public object GameIndices { get; set; }
 
-        object[] HeldItems { get; set; }
+        public double Height { get; set; }
 
-        int Id { get; set; }
+        public object[] HeldItems { get; set; }
 
-        bool IsDefault { get; set; }
+        public int Id { get; set; }
 
-        string LocationAreaEncounters { get; set; }
+        [JsonProperty("is_default")]
+        public bool IsDefault { get; set; }
 
-        object[] Moves { get; set; }
+        public string LocationAreaEncounters { get; set; }
 
-        string Name { get; set; }
+        public object[] Moves { get; set; }
 
-        int Order { get; set; }
+        public string Name { get; set; }
 
-        object[] PastTypes { get; set; }
+        public int Order { get; set; }
 
-        object Species { get; set; }
+        public object[] PastTypes { get; set; }
 
-        object Sprites { get; set; }
+        public object Species { get; set; }
 
-        object[] Stats { get; set; }
+        public object Sprites { get; set; }
 
-        object[] Types { get; set; }
+        public object[] Stats { get; set; }
 
-        double Weight { get; set; }
+        public object[] Types { get; set; }
+
+        public double Weight { get; set; }
     }
 }

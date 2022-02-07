@@ -3,24 +3,38 @@ using PokeApi.Models;
 using PokeApi.PokemonManagement;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using System;
 
 namespace PokeApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
         private readonly IPokemonService pokemonService;
 
-        PokemonController(IPokemonService pokemonService)
+        public PokemonController(IPokemonService pokemonService)
         {
             this.pokemonService = pokemonService;
         }
 
-        [HttpGet("/{name}")]
+        [HttpGet("{name}")]
         public async Task<ActionResult<Pokemon>> GetAsync(string name)
         {
-            Pokemon pokemon = await pokemonService.GetPokemonAsync(name);
+            if (string.IsNullOrEmpty(name))
+            {
+                return BadRequest();
+            }
 
-            return Ok(pokemon);
+            try
+            {
+                Pokemon pokemon = await pokemonService.GetPokemonAsync(name);
+                return Ok(pokemon);
+            }
+            catch (Exception e)
+            {
+                return Problem();
+            }
         }
         
         [HttpGet("/translated/{name}")]

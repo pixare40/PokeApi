@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PokeApi.Models\PokeApi.Models.csproj" />
+    <ProjectReference Include="..\PokeApi.PokemonManagement\PokeApi.PokemonManagement.csproj" />
     <ProjectReference Include="..\PokemonManagement\PokeApi.PokemonManagement.csproj" />
   </ItemGroup>
 

@@ -12,7 +12,7 @@ namespace PokeApi.PokemonManagement.Tests
         public void Send_Null_As_Pokemon_Name()
         {
             var options = Options.Create<PokemonApiConfigModel>(
-                new PokemonApiConfigModel { PokemonApi = "" });
+                new PokemonApiConfigModel { Host = "" });
 
             var pokemonService = new PokemonService(options);
             Assert.IsNull(pokemonService.GetPokemonAsync(""));

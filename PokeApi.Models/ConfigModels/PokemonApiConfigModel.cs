@@ -6,8 +6,8 @@ namespace PokeApi.Models.ConfigModels
 {
     public class PokemonApiConfigModel
     {
-        public const string PokemonApiConfig = "PokemonApi";
+        public const string PokemonApiConfig = "PokemonApiConfig";
 
-        public string PokemonApi { get; set; }
+        public string Host { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace PokemonManagement
         public PokemonService(IOptions<PokemonApiConfigModel> pokemonApiConfig)
         {
             client = new HttpClient();
-            pokemonApi = pokemonApiConfig.Value.PokemonApi;
+            pokemonApi = pokemonApiConfig.Value.Host;
         }
 
         public void Dispose()
@@ -49,10 +49,11 @@ namespace PokemonManagement
             HttpResponseMessage response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            var contentStream = await response.Content.ReadAsStreamAsync();
+            var contentString = await response.Content.ReadAsStringAsync();
 
-            return await JsonSerializer.DeserializeAsync<Pokemon>(contentStream,
-                new JsonSerializerOptions { IgnoreNullValues = true, PropertyNameCaseInsensitive = true });
+            Pokemon result = JsonSerializer.Deserialize<Pokemon>(contentString,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return result;
         }
     }
 }
