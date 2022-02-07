@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using PokeApi.Infrastructure;
+using PokeApi.Models;
 using PokeApi.Models.ConfigModels;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeApi.PokemonManagement.Descriptions.Descriptors
 {
-    public abstract class FunTranslationsTranslator
+    public abstract class FunTranslationsTranslator : DefaultDescriptor
     {
         private readonly IHttpClientProvider httpClientProvider;
         private readonly string apiEndpoint;
@@ -23,22 +24,23 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
             apiEndpoint = pokemonApiConfig.Value.FunTranslationsEndpoint;
         }
 
-        protected async Task<string> TranslateAsync(string input)
+        protected async Task<DescriptionModel> TranslateAsync(string input)
         {
-            string sanitised = Regex.Replace(input, "[^0-9A-Za-z ,'.]", " ");
+            string sanitised = SanitiseInputString(input);
 
             string requestUrl = string.Format("{0}{1}{2}{3}", apiEndpoint, TranslationType, ".json?text=", Uri.EscapeDataString(sanitised));
 
             try
             {
                 TranslatedResponseModel response = await httpClientProvider.GetAsync<TranslatedResponseModel>(requestUrl);
-                return response.Contents.Translation;
+                return new DescriptionModel { Success = true, Description = response.Contents.Translated };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return sanitised;
+                return new DescriptionModel { Success = false, Description = sanitised };
             }
         }
+
     }
 
 

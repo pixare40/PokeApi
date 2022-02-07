@@ -39,6 +39,7 @@ namespace PokeApi
             services.Configure<PokemonApiConfigModel>(Configuration
                 .GetSection(PokemonApiConfigModel.PokemonApiConfig));
             services.AddSingleton<IPokemonService, PokemonService>();
+            services.AddMemoryCache();
             services.AddControllers();
         }
 
