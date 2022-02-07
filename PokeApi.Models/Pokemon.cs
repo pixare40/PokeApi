@@ -1,46 +1,79 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PokeApi.Models
 {
     public class Pokemon
     {
-        [JsonProperty("abilities")]
-        public object Abilities { get; set; }
+        [JsonPropertyName("base_happiness")]
+        public object BaseHappiness { get; set; }
 
-        public object BaseExperience { get; set; }
+        [JsonPropertyName("capture_rate")]
+        public object CaptureRate { get; set; }
 
-        [JsonProperty("forms")]
-        public object Forms { get; set; }
+        public object Color { get; set; }
 
-        public object GameIndices { get; set; }
+        [JsonPropertyName("egg_groups")]
+        public object[] EggGroups { get; set; }
 
-        public double Height { get; set; }
+        [JsonPropertyName("evolution_chain")]
+        public object EvolutionChain { get; set; }
 
-        public object[] HeldItems { get; set; }
+        [JsonPropertyName("evolves_from_species")]
+        public object EvolvesFromSpecies { get; set; }
 
-        public int Id { get; set; }
+        [JsonPropertyName("flavor_text_entries")]
+        public object[] FlavorTextEntries { get; set; }
 
-        [JsonProperty("is_default")]
-        public bool IsDefault { get; set; }
+        [JsonPropertyName("form_descriptions")]
+        public object[] FormDescriptions { get; set; }
 
-        public string LocationAreaEncounters { get; set; }
+        [JsonPropertyName("forms_switchable")]
+        public bool FormsSwitchable { get; set; }
 
-        public object[] Moves { get; set; }
+        [JsonPropertyName("gender_rate")]
+        public int GenderRate { get; set; }
+
+        public object[] Genera { get; set; }
+
+        public object Generation { get; set; }
+
+        [JsonPropertyName("growth_rate")]
+        public object GrowthRate { get; set; }
+
+        public object Habitat { get; set; }
+
+        [JsonPropertyName("has_gender_differences")]
+        public bool HasGenderDIfferences { get; set; }
+
+        [JsonPropertyName("hatch_counter")]
+        public int HatchCounter { get; set; }
+
+        public double Id { get; set; }
+
+        [JsonPropertyName("is_baby")]
+        public bool IsBaby { get; set; }
+
+        [JsonPropertyName("is_legendary")]
+        public bool IsLegendary { get; set; }
+
+        [JsonPropertyName("is_mythical")]
+        public bool IsMythical { get; set; }
 
         public string Name { get; set; }
 
+        public object[] Names { get; set; }
+
         public int Order { get; set; }
 
-        public object[] PastTypes { get; set; }
+        [JsonPropertyName("pal_park_encounters")]
+        public object[] PalParkEncounters { get; set; }
 
-        public object Species { get; set; }
+        [JsonPropertyName("pokedex_numbers")]
+        public object[] PokedexNumbers { get; set; }
 
-        public object Sprites { get; set; }
+        public object Shape { get; set; }
 
-        public object[] Stats { get; set; }
-
-        public object[] Types { get; set; }
-
-        public double Weight { get; set; }
+        public object[] Varieties { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace PokemonManagement
             client.Dispose();
         }
 
-        public async Task<Pokemon> GetPokemonAsync(string name)
+        public virtual async Task<Pokemon> GetPokemonAsync(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -34,7 +34,7 @@ namespace PokemonManagement
             return await GetHttpResponse(pokemonApi + name);
         }
 
-        public async Task<Pokemon> GetTranslatedPokemon(string name)
+        public virtual async Task<Pokemon> GetTranslatedPokemon(string name)
         {
             if (name == null)
             {
