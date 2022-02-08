@@ -54,6 +54,11 @@ namespace PokeApi.Controllers
         [HttpGet("translated/{name}")]
         public async Task<ActionResult<Pokemon>> GetTranslatedAsync(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return BadRequest();
+            }
+
             string cacheKey = string.Format("{0}{1}", name, "translated");
 
             if (memoryCache.TryGetValue(cacheKey, out PokemonResponseModel pokemonResponse))

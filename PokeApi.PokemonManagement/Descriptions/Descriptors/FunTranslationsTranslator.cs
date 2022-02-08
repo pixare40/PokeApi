@@ -24,7 +24,24 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
             apiEndpoint = pokemonApiConfig.Value.FunTranslationsEndpoint;
         }
 
-        protected async Task<DescriptionModel> TranslateAsync(string input)
+        public async Task<DescriptionModel> GetDescriptionAsync(Pokemon pokemon, bool translated = false)
+        {
+            if (ShouldReturnEmptyDescription(pokemon))
+            {
+                return new DescriptionModel { Success = true, Description = string.Empty };
+            }
+
+            if (!translated)
+            {
+                return DefaultDescription(pokemon);
+            }
+
+            string defaultDescription = pokemon.FlavorTextEntries[0].FlavourText;
+
+            return await TranslateAsync(defaultDescription);
+        }
+
+        protected virtual async Task<DescriptionModel> TranslateAsync(string input)
         {
             string sanitised = SanitiseInputString(input);
 
@@ -39,6 +56,11 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
             {
                 return new DescriptionModel { Success = false, Description = sanitised };
             }
+        }
+
+        private static bool ShouldReturnEmptyDescription(Pokemon pokemon)
+        {
+            return pokemon.FlavorTextEntries == null || pokemon.FlavorTextEntries.Length == 0;
         }
 
     }

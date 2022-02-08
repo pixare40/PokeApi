@@ -34,7 +34,7 @@ namespace PokeApiTests.PokeApi.Infrastructure.Tests
             var client = new HttpClient(mockHttpMessageHandler.Object);
 
             mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(client);
-            IHttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
+            HttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
             Assert.ThrowsAsync<ArgumentNullException>(() =>  httpClientProvider.GetAsync<Pokemon>(null));
         }
 
