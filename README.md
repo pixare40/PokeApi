@@ -31,6 +31,7 @@ You can now navigate to the application at
 ## Things I could have done differently in production level situation:
 
 * At present I have attempted to cache results using the built in inMemoryCache due to the rate limits for the translations API. In production a more robust solution would be using an off app solution like redis.
+* In production readable errors in case of something for example if the pokemon could not be found should be more clear so that the application consuming the API can be more clear to the end user. At present I have not done enough to create better error handling in the API system which would be of utmost necessity in a production system.
 * DOCUMENTATION - I have not really documented this API at all. A simple thing would be displaying the swagger pages in development but that would not be sufficiently conclusive.
 * I tried not to over engineer the dynamic nature of the translators because I kept thinking of how I could possibly add more translators which are completely different in future but I wanted it still simple enough for the scope of the project.
 * The reasoning behind having multiple class libraries abstracted by interfaces is to mimic having separate teams working across multiple domains instead providing consumable libraries for the product.
