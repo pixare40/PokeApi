@@ -27,7 +27,7 @@ namespace PokeApi.Controllers
         }
 
         [HttpGet("{name}")]
-        public async Task<ActionResult<Pokemon>> GetAsync(string name)
+        public async Task<ActionResult<PokemonResponseModel>> GetAsync(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -52,7 +52,7 @@ namespace PokeApi.Controllers
         }
 
         [HttpGet("translated/{name}")]
-        public async Task<ActionResult<Pokemon>> GetTranslatedAsync(string name)
+        public async Task<ActionResult<PokemonResponseModel>> GetTranslatedAsync(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
