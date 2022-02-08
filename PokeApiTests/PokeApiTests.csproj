@@ -14,11 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PokeApi.Infrastructure\PokeApi.Infrastructure.csproj" />
     <ProjectReference Include="..\PokeApi.PokemonManagement\PokeApi.PokemonManagement.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="PokeApi.Infrastructure.Tests\" />
   </ItemGroup>
 
 </Project>

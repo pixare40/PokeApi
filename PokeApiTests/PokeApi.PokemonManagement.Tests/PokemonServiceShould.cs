@@ -14,17 +14,18 @@ using System.Threading.Tasks;
 namespace PokeApiTests.PokeApi.PokemonManagement.Tests
 {
     [TestFixture]
-    public class PokemonServiceTests
+    public class PokemonServiceShould
     {
         private PokemonService pokemonService;
+        private Mock<IHttpClientProvider> httpProviderMock;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetupPokemonService()
         {
-            Mock<IHttpClientProvider> httpProviderMock = new Mock<IHttpClientProvider>();
+            httpProviderMock = new Mock<IHttpClientProvider>();
             httpProviderMock
-                .Setup(x => x.GetAsync<Pokemon>(It.IsAny<string>()))
-                .Returns(()=> Task.FromResult(new Pokemon { Name = "Test Pokemon"}));
+                .Setup(x => x.GetAsync<Pokemon>("ditto"))
+                .Returns(()=> Task.FromResult(new Pokemon { Name = "ditto"}));
             Mock<PokemonApiConfigModel> optionConfigMock = new Mock<PokemonApiConfigModel>();
             Mock<IOptions<PokemonApiConfigModel>> opt = new Mock<IOptions<PokemonApiConfigModel>>();
             opt.SetupGet(x => x.Value).Returns(optionConfigMock.Object);
@@ -38,15 +39,23 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
         {
             var result = pokemonService.GetPokemonAsync(null);
 
-            Assert.AreEqual(null, result.Result);
+            Assert.That(result.Result, Is.EqualTo(null));
         }
 
         [Test]
         public  void ReturnPokemonObjectIfValidationPasses()
         {
-            var result = pokemonService.GetPokemonAsync("Test Pokemon");
+            var result = pokemonService.GetPokemonAsync("ditto");
 
-            Assert.IsInstanceOf<Pokemon>(result.Result);
+            Assert.That(result.Result, Is.InstanceOf<Pokemon>());
+        }
+
+        [Test]
+        public void CallsHttpProviderGetAsyncMethodOnce()
+        {
+            var result = pokemonService.GetPokemonAsync("mewtwo");
+
+            httpProviderMock.Verify(x => x.GetAsync<Pokemon>(string.Format("{0}{1}", null, "mewtwo")), Times.Once);
         }
     }
 }

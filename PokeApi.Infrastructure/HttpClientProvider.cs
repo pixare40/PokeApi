@@ -9,26 +9,41 @@ namespace PokeApi.Infrastructure
     {
         private readonly HttpClient client;
 
-        public HttpClientProvider()
+        public HttpClient Client
         {
-            client = new HttpClient();
+            get { return client; }
+        }
+
+        public HttpClientProvider(IHttpClientFactory httpClientFactory)
+        {
+            client = httpClientFactory.CreateClient();
         }
 
         public async Task<T> GetAsync<T>(string requestUri)
         {
-            HttpResponseMessage response = await client.GetAsync(requestUri);
+            if (string.IsNullOrEmpty(requestUri))
+            {
+                throw new ArgumentNullException();
+            }
+
+            HttpResponseMessage response = await Client.GetAsync(requestUri);
             response.EnsureSuccessStatusCode();
 
             var contentString = await response.Content.ReadAsStringAsync();
 
-            T result = JsonSerializer.Deserialize<T>(contentString,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            T result = DeserializeContentString<T>(contentString);
             return result;
+        }
+
+        public static T DeserializeContentString<T>(string contentString)
+        {
+            return JsonSerializer.Deserialize<T>(contentString,
+                            new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         public void Dispose()
         {
-            client.Dispose();
+            Client.Dispose();
         }
     }
 }
