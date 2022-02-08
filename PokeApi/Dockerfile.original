@@ -7,13 +7,13 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["PokeApi/PokeApi.csproj", "PokeApi/"]
-COPY ["PokeApi.Models/PokeApi.Models.csproj", "PokeApi.Models/"]
-COPY ["PokeApi.PokemonManagement/PokeApi.PokemonManagement.csproj", "PokeApi.PokemonManagement/"]
-COPY ["PokeApi.Infrastructure/PokeApi.Infrastructure.csproj", "PokeApi.Infrastructure/"]
-RUN dotnet restore "PokeApi/PokeApi.csproj"
+COPY ["PokeApi.csproj", "."]
+COPY ["../PokeApi.Models/PokeApi.Models.csproj", "../PokeApi.Models/"]
+COPY ["../PokeApi.PokemonManagement/PokeApi.PokemonManagement.csproj", "../PokeApi.PokemonManagement/"]
+COPY ["../PokeApi.Infrastructure/PokeApi.Infrastructure.csproj", "../PokeApi.Infrastructure/"]
+RUN dotnet restore "PokeApi.csproj"
 COPY . .
-WORKDIR "/src/PokeApi"
+WORKDIR "/src/"
 RUN dotnet build "PokeApi.csproj" -c Release -o /app/build
 
 FROM build AS publish

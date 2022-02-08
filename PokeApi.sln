@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi", "PokeApi.csproj", "{D774C78E-4A07-419C-92FB-310F09084260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi", "PokeApi\PokeApi.csproj", "{D774C78E-4A07-419C-92FB-310F09084260}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi.Models", "..\PokeApi.Models\PokeApi.Models.csproj", "{8E6B65CD-496D-47C9-8045-E985059B6CEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi.Models", "PokeApi.Models\PokeApi.Models.csproj", "{8E6B65CD-496D-47C9-8045-E985059B6CEF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi.PokemonManagement", "..\PokeApi.PokemonManagement\PokeApi.PokemonManagement.csproj", "{5DC2A888-6C52-4426-B676-C35D1E2397E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi.PokemonManagement", "PokeApi.PokemonManagement\PokeApi.PokemonManagement.csproj", "{5DC2A888-6C52-4426-B676-C35D1E2397E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApi.Infrastructure", "..\PokeApi.Infrastructure\PokeApi.Infrastructure.csproj", "{306DA0D4-CDF5-4E19-9813-4CFD837B3D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApi.Infrastructure", "PokeApi.Infrastructure\PokeApi.Infrastructure.csproj", "{306DA0D4-CDF5-4E19-9813-4CFD837B3D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApiTests", "..\PokeApiTests\PokeApiTests.csproj", "{F54E788B-04B7-47DA-AD41-9F9FFAF11652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokeApiTests", "PokeApiTests\PokeApiTests.csproj", "{F54E788B-04B7-47DA-AD41-9F9FFAF11652}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0330E319-9B3A-4177-B68A-3E2351A6BB15}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5186EB83-7DCF-495F-9608-0E05AFD8B9BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5186EB83-7DCF-495F-9608-0E05AFD8B9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5186EB83-7DCF-495F-9608-0E05AFD8B9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5186EB83-7DCF-495F-9608-0E05AFD8B9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5186EB83-7DCF-495F-9608-0E05AFD8B9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
