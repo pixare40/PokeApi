@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApi.Infrastructure", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeApiTests", "..\PokeApiTests\PokeApiTests.csproj", "{F54E788B-04B7-47DA-AD41-9F9FFAF11652}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0330E319-9B3A-4177-B68A-3E2351A6BB15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F54E788B-04B7-47DA-AD41-9F9FFAF11652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0330E319-9B3A-4177-B68A-3E2351A6BB15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
