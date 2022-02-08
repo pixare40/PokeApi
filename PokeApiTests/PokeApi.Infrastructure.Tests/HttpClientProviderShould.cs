@@ -34,7 +34,7 @@ namespace PokeApiTests.PokeApi.Infrastructure.Tests
             var client = new HttpClient(mockHttpMessageHandler.Object);
 
             mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(client);
-            HttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
+            HttpClientWrapper httpClientProvider = new HttpClientWrapper(mockFactory.Object);
             Assert.ThrowsAsync<ArgumentNullException>(() =>  httpClientProvider.GetAsync<Pokemon>(null));
         }
 
@@ -53,7 +53,7 @@ namespace PokeApiTests.PokeApi.Infrastructure.Tests
             var client = new HttpClient(mockHttpMessageHandler.Object);
 
             mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(client);
-            IHttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
+            IHttpClientWrapper httpClientProvider = new HttpClientWrapper(mockFactory.Object);
 
             Assert.ThrowsAsync<InvalidOperationException>(() => httpClientProvider.GetAsync<Pokemon>("string"));
         }
@@ -73,7 +73,7 @@ namespace PokeApiTests.PokeApi.Infrastructure.Tests
             var client = new HttpClient(mockHttpMessageHandler.Object);
 
             mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(client);
-            IHttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
+            IHttpClientWrapper httpClientProvider = new HttpClientWrapper(mockFactory.Object);
 
             Assert.ThrowsAsync<HttpRequestException>(() => httpClientProvider.GetAsync<Pokemon>("http://api.google.com"));
         }
@@ -94,7 +94,7 @@ namespace PokeApiTests.PokeApi.Infrastructure.Tests
             var client = new HttpClient(mockHttpMessageHandler.Object);
 
             mockFactory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(client);
-            IHttpClientProvider httpClientProvider = new HttpClientProvider(mockFactory.Object);
+            IHttpClientWrapper httpClientProvider = new HttpClientWrapper(mockFactory.Object);
 
             var result = httpClientProvider.GetAsync<Pokemon>("http://api.google.com");
             

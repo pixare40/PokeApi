@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PokeApi.Infrastructure
 {
-    public class HttpClientProvider : IHttpClientProvider, IDisposable
+    public class HttpClientWrapper : IHttpClientWrapper, IDisposable
     {
         private readonly HttpClient client;
 
@@ -14,7 +14,7 @@ namespace PokeApi.Infrastructure
             get { return client; }
         }
 
-        public HttpClientProvider(IHttpClientFactory httpClientFactory)
+        public HttpClientWrapper(IHttpClientFactory httpClientFactory)
         {
             client = httpClientFactory.CreateClient();
         }

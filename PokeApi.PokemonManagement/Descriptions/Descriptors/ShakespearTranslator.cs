@@ -11,7 +11,7 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
 {
     public class ShakespearTranslator : FunTranslationsTranslator, IDescriptionService
     {
-        public ShakespearTranslator(IHttpClientProvider httpClientProvider, IOptions<PokemonApiConfigModel> pokemonApiConfig)
+        public ShakespearTranslator(IHttpClientWrapper httpClientProvider, IOptions<PokemonApiConfigModel> pokemonApiConfig)
             :base(httpClientProvider, pokemonApiConfig)
         {
         }

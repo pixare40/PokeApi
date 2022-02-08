@@ -17,12 +17,12 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
     public class PokemonServiceShould
     {
         private PokemonService pokemonService;
-        private Mock<IHttpClientProvider> httpProviderMock;
+        private Mock<IHttpClientWrapper> httpProviderMock;
 
         [OneTimeSetUp]
         public void SetupPokemonService()
         {
-            httpProviderMock = new Mock<IHttpClientProvider>();
+            httpProviderMock = new Mock<IHttpClientWrapper>();
             httpProviderMock
                 .Setup(x => x.GetAsync<Pokemon>("ditto"))
                 .Returns(()=> Task.FromResult(new Pokemon { Name = "ditto"}));

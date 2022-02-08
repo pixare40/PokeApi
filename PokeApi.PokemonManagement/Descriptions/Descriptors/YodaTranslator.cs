@@ -11,7 +11,7 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
 {
     public class YodaTranslator : FunTranslationsTranslator, IDescriptionService
     {
-        public YodaTranslator(IHttpClientProvider httpClientProvider, IOptions<PokemonApiConfigModel> pokemonApiConfig)
+        public YodaTranslator(IHttpClientWrapper httpClientProvider, IOptions<PokemonApiConfigModel> pokemonApiConfig)
             : base(httpClientProvider, pokemonApiConfig)
         {
         }

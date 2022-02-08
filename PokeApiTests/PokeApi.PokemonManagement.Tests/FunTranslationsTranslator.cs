@@ -17,7 +17,7 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
         [Test]
         public void ReturnEmptyDescriptionMethodIfFlavourEntiresIsNull()
         {
-            Mock<IHttpClientProvider> mockClientProvider = new Mock<IHttpClientProvider>();
+            Mock<IHttpClientWrapper> mockClientProvider = new Mock<IHttpClientWrapper>();
             Mock<PokemonApiConfigModel> optionConfigMock = new Mock<PokemonApiConfigModel>();
             Mock<IOptions<PokemonApiConfigModel>> opt = new Mock<IOptions<PokemonApiConfigModel>>();
             opt.SetupGet(x => x.Value).Returns(optionConfigMock.Object);
@@ -32,7 +32,7 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
         [Test]
         public void ReturnDefaultDescriptionIfTranslationNotRequested()
         {
-            Mock<IHttpClientProvider> mockClientProvider = new Mock<IHttpClientProvider>();
+            Mock<IHttpClientWrapper> mockClientProvider = new Mock<IHttpClientWrapper>();
             Mock<PokemonApiConfigModel> optionConfigMock = new Mock<PokemonApiConfigModel>();
             Mock<IOptions<PokemonApiConfigModel>> opt = new Mock<IOptions<PokemonApiConfigModel>>();
             opt.SetupGet(x => x.Value).Returns(optionConfigMock.Object);
@@ -51,7 +51,7 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
         [Test]
         public void ReturnDescriptionModelWithSuccessAsFalseIfErrorOccursDuringTranslation()
         {
-            Mock<IHttpClientProvider> mockClientProvider = new Mock<IHttpClientProvider>();
+            Mock<IHttpClientWrapper> mockClientProvider = new Mock<IHttpClientWrapper>();
             Mock<PokemonApiConfigModel> optionConfigMock = new Mock<PokemonApiConfigModel>();
             Mock<IOptions<PokemonApiConfigModel>> opt = new Mock<IOptions<PokemonApiConfigModel>>();
             opt.SetupGet(x => x.Value).Returns(optionConfigMock.Object);
@@ -70,7 +70,7 @@ namespace PokeApiTests.PokeApi.PokemonManagement.Tests
         [Test]
         public void ReturnTranslatedResponseModelIfTranslatedDataIsReceived()
         {
-            Mock<IHttpClientProvider> mockClientProvider = new Mock<IHttpClientProvider>();
+            Mock<IHttpClientWrapper> mockClientProvider = new Mock<IHttpClientWrapper>();
             mockClientProvider.Setup(x => x.GetAsync<TranslatedResponseModel>(It.IsAny<string>()))
                 .ReturnsAsync(() => new TranslatedResponseModel()
                 {

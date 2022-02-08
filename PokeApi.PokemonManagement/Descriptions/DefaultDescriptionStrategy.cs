@@ -12,10 +12,10 @@ namespace PokeApi.PokemonManagement.Descriptions
     public class DefaultDescriptionStrategy : IDescriptionStrategy
     {
         private IDictionary<string, IDescriptionService> descriptors;
-        private readonly IHttpClientProvider httpClientProvider;
+        private readonly IHttpClientWrapper httpClientProvider;
         private readonly IOptions<PokemonApiConfigModel> pokemonApiConfig;
 
-        public DefaultDescriptionStrategy(IHttpClientProvider httpClientProvider,
+        public DefaultDescriptionStrategy(IHttpClientWrapper httpClientProvider,
             IOptions<PokemonApiConfigModel> pokemonApiConfig)
         {
             this.httpClientProvider = httpClientProvider;

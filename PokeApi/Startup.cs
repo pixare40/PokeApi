@@ -32,7 +32,7 @@ namespace PokeApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
-            services.AddSingleton<IHttpClientProvider, HttpClientProvider>();
+            services.AddSingleton<IHttpClientWrapper, HttpClientWrapper>();
             services.AddSingleton<YodaTranslator>();
             services.AddSingleton<ShakespearTranslator>();
             services.AddSingleton<IDescriptionStrategy, DefaultDescriptionStrategy>();

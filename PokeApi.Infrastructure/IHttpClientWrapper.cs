@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokeApi.Infrastructure
 {
-    public interface IHttpClientProvider
+    public interface IHttpClientWrapper
     {
         Task<T> GetAsync<T>(string requestUri);
     }

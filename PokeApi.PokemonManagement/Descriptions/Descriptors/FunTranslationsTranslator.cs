@@ -12,12 +12,12 @@ namespace PokeApi.PokemonManagement.Descriptions.Descriptors
 {
     public abstract class FunTranslationsTranslator : DefaultDescriptor
     {
-        private readonly IHttpClientProvider httpClientProvider;
+        private readonly IHttpClientWrapper httpClientProvider;
         private readonly string apiEndpoint;
 
         protected abstract string TranslationType { get; }
 
-        public FunTranslationsTranslator(IHttpClientProvider httpClientProvider, 
+        public FunTranslationsTranslator(IHttpClientWrapper httpClientProvider, 
             IOptions<PokemonApiConfigModel> pokemonApiConfig)
         {
             this.httpClientProvider = httpClientProvider;

@@ -13,9 +13,9 @@ namespace PokemonManagement
     public class PokemonService : IPokemonService
     {
         public readonly string pokemonApi;
-        private readonly IHttpClientProvider httpClient;
+        private readonly IHttpClientWrapper httpClient;
 
-        public PokemonService(IOptions<PokemonApiConfigModel> pokemonApiConfig, IHttpClientProvider httpClient)
+        public PokemonService(IOptions<PokemonApiConfigModel> pokemonApiConfig, IHttpClientWrapper httpClient)
         {
             pokemonApi = pokemonApiConfig.Value.PokeApiEndpoint;
             this.httpClient = httpClient;
