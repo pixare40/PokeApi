@@ -6,7 +6,7 @@ Pokemon API for getting pokemon data from the pokeapi endpoint built using asp.n
 
 The project is is organised into 5 projects:
 
-* PokeApi - The main project
+* PokeApi - The API project. Entrypoint for the app.
 * PokeApi.Infrastructure - project housing infrastructure code such as HttpClientWrapper
 * PokeApi.Models - housing common models
 * PokeApi.PokemonManagement - Domain library housing specific code for pokemon management
